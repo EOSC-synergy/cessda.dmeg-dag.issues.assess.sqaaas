@@ -1,0 +1,46 @@
+config:
+  credentials: []
+  project_repos:
+    github.com/EOSC-synergy/sqaaas-tooling:
+      branch: fix/updatego
+      repo: https://github.com/EOSC-synergy/sqaaas-tooling
+    github.com/cessda/cessda.dmeg-dag.issues:
+      branch: main
+      repo: https://github.com/cessda/cessda.dmeg-dag.issues
+environment:
+  JPL_DOCKERFORCEBUILD: enabled
+  JPL_KEEPGOING: enabled
+sqa_criteria:
+  QC.Acc:
+    repos:
+      github.com/cessda/cessda.dmeg-dag.issues git:
+        commands:
+        - /usr/bin/env sh .sqa/script.cornflower_reckless_catfish.sh
+        container: qc.acc_sage_intuitive_spider
+  QC.Doc:
+    repos:
+      github.com/cessda/cessda.dmeg-dag.issues find_doc_files.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.malachite_tolerant_parrot.sh
+        container: qc.doc_gunmetal_reliable_pelican
+      github.com/cessda/cessda.dmeg-dag.issues git:
+        commands:
+        - /usr/bin/env sh .sqa/script.prussian_perceptive_ocelot.sh
+        container: qc.doc_fern_balanced_rattlesnake
+      github.com/cessda/cessda.dmeg-dag.issues markdownlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.fern_inventive_alligator.sh
+        container: qc.doc_cerulean_trustworthy_sphinx
+  QC.Lic:
+    repos:
+      github.com/cessda/cessda.dmeg-dag.issues licensee:
+        commands:
+        - /usr/bin/env sh .sqa/script.glacier_persistent_macaw.sh
+        container: qc.lic_mulberry_insightful_wombat
+  QC.Ver:
+    repos:
+      github.com/cessda/cessda.dmeg-dag.issues get_git_tags.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.ruby_gracious_turkey.sh
+        container: qc.ver_cinnamon_cautious_gerbil
+timeout: 5400
